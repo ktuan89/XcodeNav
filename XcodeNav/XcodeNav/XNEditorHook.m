@@ -6,8 +6,8 @@
 #import "XNFileListView.h"
 
 @interface IDEEditor(Hook)
-- (void)didSetupEditor_;
-- (void)primitiveInvalidate_;
+- (void)didSetupEditor__xn;
+- (void)primitiveInvalidate__xn;
 @end
 
 @implementation XNEditorHook
@@ -23,7 +23,7 @@ static char _associatedViewKey = 0;
 - (void)didSetupEditor
 {
   IDEEditor* editor = (IDEEditor*)self;
-  [editor didSetupEditor_];
+  [editor didSetupEditor__xn];
 
   NSView* container = nil;
   if ([NSStringFromClass([editor class]) isEqualToString:@"IDESourceCodeComparisonEditor"]) {
@@ -36,22 +36,22 @@ static char _associatedViewKey = 0;
 
   if (container != nil) {
     XNFileListView *fileListView = objc_getAssociatedObject(container, &_associatedViewKey);
-		if (fileListView == nil) {
-			// Insert status line
-			[container setPostsFrameChangedNotifications:YES];
-			fileListView = [[XNFileListView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
-			[container addSubview:fileListView];
+    if (fileListView == nil) {
+      // Insert status line
+      [container setPostsFrameChangedNotifications:YES];
+      fileListView = [[XNFileListView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
+      [container addSubview:fileListView];
       objc_setAssociatedObject(container, &_associatedViewKey, fileListView, OBJC_ASSOCIATION_RETAIN);
 
-			// Layout
-			[[NSNotificationCenter defaultCenter] addObserver:fileListView selector:@selector(didContainerFrameChanged:) name:NSViewFrameDidChangeNotification object:container];
-			[fileListView layoutView:container];
-			[container performSelector:@selector(invalidateLayout)];
+      // Layout
+      [[NSNotificationCenter defaultCenter] addObserver:fileListView selector:@selector(didContainerFrameChanged:) name:NSViewFrameDidChangeNotification object:container];
+      [fileListView layoutView:container];
+      [container performSelector:@selector(invalidateLayout)];
 
       // For % register and to notify contents of editor is changed
       /*[editor addObserver:[XVim instance] forKeyPath:@"document" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
       objc_setAssociatedObject(editor, DID_REGISTER_OBSERVER_KEY, [NSNumber numberWithBool:YES], OBJC_ASSOCIATION_RETAIN);*/
-		}
+    }
   }
   //---- TO HERE ----
 }
@@ -59,7 +59,7 @@ static char _associatedViewKey = 0;
 - (void)primitiveInvalidate
 {
   IDEEditor *editor = (IDEEditor *)self;
-  [editor primitiveInvalidate_];
+  [editor primitiveInvalidate__xn];
 }
 
 @end

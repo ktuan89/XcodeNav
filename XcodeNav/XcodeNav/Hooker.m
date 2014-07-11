@@ -64,19 +64,19 @@
  * Internal method.
  * This convert a method name by a rule explained in hookClass:... method's explanation.
  * It is like...
- *  Method "foo" will be "foo_"
- *  Method "foo:" will be "foo_:"
- *  Method "foo:bar:" will be "foo_:bar"
+ *  Method "foo" will be "foo__xn"
+ *  Method "foo:" will be "foo__xn:"
+ *  Method "foo:bar:" will be "foo__xn:bar"
  **/
 + (SEL) createPreserveSelectorName:(NSString*)origSelector{
     NSRange r = [origSelector rangeOfString:@":"];
     if( NSNotFound == r.location ){
-        // Just appeend "_" at the end.
-        return NSSelectorFromString([origSelector stringByAppendingString:@"_"]);
+        // Just appeend "__xn" at the end.
+        return NSSelectorFromString([origSelector stringByAppendingString:@"__xn"]);
     }else{
-        // Insert "_" before first ":"
+        // Insert "__xn" before first ":"
         NSMutableString *newSel = [NSMutableString stringWithString:[origSelector substringToIndex:r.location]];
-        [newSel appendString:@"_"];
+        [newSel appendString:@"__xn"];
         [newSel appendString:[origSelector substringFromIndex:r.location]];
         return NSSelectorFromString(newSel);
     }
