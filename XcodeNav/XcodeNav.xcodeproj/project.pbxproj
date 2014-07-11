@@ -22,6 +22,11 @@
 		B82F3FB6196FC3A300A3E054 /* XNXcodeNav.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNXcodeNav.h; sourceTree = "<group>"; };
 		B82F3FB7196FC3A300A3E054 /* XNXcodeNav.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNXcodeNav.m; sourceTree = "<group>"; };
 		B82F3FB9196FC3A300A3E054 /* XcodeNav-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodeNav-Prefix.pch"; sourceTree = "<group>"; };
+		B8303CBF196FC786000B9699 /* DVTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTFoundation.h; sourceTree = "<group>"; };
+		B8303CC0196FC786000B9699 /* DVTKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTKit.h; sourceTree = "<group>"; };
+		B8303CC1196FC786000B9699 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
+		B8303CC2196FC786000B9699 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
+		B8303CC3196FC786000B9699 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +71,7 @@
 		B82F3FB0196FC3A300A3E054 /* XcodeNav */ = {
 			isa = PBXGroup;
 			children = (
+				B8303CBE196FC747000B9699 /* XcodeClasses */,
 				B82F3FB6196FC3A300A3E054 /* XNXcodeNav.h */,
 				B82F3FB7196FC3A300A3E054 /* XNXcodeNav.m */,
 				B82F3FB1196FC3A300A3E054 /* Supporting Files */,
@@ -81,6 +87,18 @@
 				B82F3FB9196FC3A300A3E054 /* XcodeNav-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8303CBE196FC747000B9699 /* XcodeClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B8303CBF196FC786000B9699 /* DVTFoundation.h */,
+				B8303CC0196FC786000B9699 /* DVTKit.h */,
+				B8303CC1196FC786000B9699 /* IDEFoundation.h */,
+				B8303CC2196FC786000B9699 /* IDEKit.h */,
+				B8303CC3196FC786000B9699 /* IDESourceEditor.h */,
+			);
+			name = XcodeClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +301,7 @@
 				B82F3FBE196FC3A300A3E054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
