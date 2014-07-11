@@ -47,6 +47,11 @@
     [Hooker hookMethod:NSSelectorFromString(mtd) ofClass:c1 withMethod:m2 keepingOriginalWith:preservedSelector];
 }
 
++ (void)hookClass:(NSString *)cls method:(NSString *)mtd byClass:(Class)cls2
+{
+  [Hooker hookClass:cls method:mtd byClass:NSStringFromClass(cls2) method:mtd];
+}
+
 + (void) unhookClass:(NSString*)cls method:(NSString*)mtd{
     Class c1 = NSClassFromString(cls);
     SEL preservedSelector = [Hooker createPreserveSelectorName:mtd];

@@ -7,6 +7,7 @@
 //
 
 #import "XNXcodeNav.h"
+#import "XNEditorHook.h"
 
 static XNXcodeNav *sharedPlugin;
 
@@ -16,6 +17,11 @@ static XNXcodeNav *sharedPlugin;
 @end
 
 @implementation XNXcodeNav
+
++ (void)load
+{
+  [XNEditorHook hook];
+}
 
 + (void)pluginDidLoad:(NSBundle *)plugin
 {

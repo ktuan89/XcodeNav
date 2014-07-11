@@ -26,6 +26,8 @@
  **/
 + (void) hookClass:(NSString*)cls method:(NSString*)mtd byClass:(NSString*)cls2 method:(NSString*)mtd2;
 
++ (void)hookClass:(NSString *)cls method:(NSString *)mtd byClass:(Class)cls2;
+
 /**
  * Unhook "cls"'s "mtd" method.
  * This method must be hooked by hookClass:... method.
