@@ -11,6 +11,7 @@
 		B82F3FAF196FC3A200A3E054 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82F3FAE196FC3A200A3E054 /* Foundation.framework */; };
 		B82F3FB5196FC3A300A3E054 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B82F3FB3196FC3A300A3E054 /* InfoPlist.strings */; };
 		B82F3FB8196FC3A300A3E054 /* XNXcodeNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B82F3FB7196FC3A300A3E054 /* XNXcodeNav.m */; };
+		B8303CC6196FCD79000B9699 /* Hooker.m in Sources */ = {isa = PBXBuildFile; fileRef = B8303CC5196FCD79000B9699 /* Hooker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		B8303CC1196FC786000B9699 /* IDEFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEFoundation.h; sourceTree = "<group>"; };
 		B8303CC2196FC786000B9699 /* IDEKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDEKit.h; sourceTree = "<group>"; };
 		B8303CC3196FC786000B9699 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
+		B8303CC4196FCD79000B9699 /* Hooker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hooker.h; sourceTree = "<group>"; };
+		B8303CC5196FCD79000B9699 /* Hooker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hooker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 		B82F3FB0196FC3A300A3E054 /* XcodeNav */ = {
 			isa = PBXGroup;
 			children = (
+				B8303CC4196FCD79000B9699 /* Hooker.h */,
+				B8303CC5196FCD79000B9699 /* Hooker.m */,
 				B8303CBE196FC747000B9699 /* XcodeClasses */,
 				B82F3FB6196FC3A300A3E054 /* XNXcodeNav.h */,
 				B82F3FB7196FC3A300A3E054 /* XNXcodeNav.m */,
@@ -165,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B82F3FB8196FC3A300A3E054 /* XNXcodeNav.m in Sources */,
+				B8303CC6196FCD79000B9699 /* Hooker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
