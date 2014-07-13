@@ -12,6 +12,7 @@
 		B82F3FB5196FC3A300A3E054 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B82F3FB3196FC3A300A3E054 /* InfoPlist.strings */; };
 		B82F3FB8196FC3A300A3E054 /* XNXcodeNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B82F3FB7196FC3A300A3E054 /* XNXcodeNav.m */; };
 		B8303CC6196FCD79000B9699 /* Hooker.m in Sources */ = {isa = PBXBuildFile; fileRef = B8303CC5196FCD79000B9699 /* Hooker.m */; };
+		B857CB5F197340540083AD64 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B857CB5E197340540083AD64 /* IDEKit.framework */; };
 		B8E5CE56197083B900F55DDA /* XNEditorHook.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E5CE55197083B900F55DDA /* XNEditorHook.m */; };
 		B8E5CE5C19708BC500F55DDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E5CE5B19708BC500F55DDA /* Cocoa.framework */; };
 		B8E5CE5E19708BCF00F55DDA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E5CE5D19708BCF00F55DDA /* CoreData.framework */; };
@@ -34,6 +35,7 @@
 		B8303CC3196FC786000B9699 /* IDESourceEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDESourceEditor.h; sourceTree = "<group>"; };
 		B8303CC4196FCD79000B9699 /* Hooker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hooker.h; sourceTree = "<group>"; };
 		B8303CC5196FCD79000B9699 /* Hooker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hooker.m; sourceTree = "<group>"; };
+		B857CB5E197340540083AD64 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
 		B8E5CE54197083B900F55DDA /* XNEditorHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNEditorHook.h; sourceTree = "<group>"; };
 		B8E5CE55197083B900F55DDA /* XNEditorHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNEditorHook.m; sourceTree = "<group>"; };
 		B8E5CE5B19708BC500F55DDA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B857CB5F197340540083AD64 /* IDEKit.framework in Frameworks */,
 				B8E5CE5E19708BCF00F55DDA /* CoreData.framework in Frameworks */,
 				B8E5CE5C19708BC500F55DDA /* Cocoa.framework in Frameworks */,
 				B82F3FAD196FC3A200A3E054 /* AppKit.framework in Frameworks */,
@@ -77,6 +80,7 @@
 		B82F3FAB196FC3A200A3E054 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B857CB5E197340540083AD64 /* IDEKit.framework */,
 				B8E5CE5D19708BCF00F55DDA /* CoreData.framework */,
 				B8E5CE5B19708BC500F55DDA /* Cocoa.framework */,
 				B82F3FAC196FC3A200A3E054 /* AppKit.framework */,
@@ -287,6 +291,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeNav/XcodeNav-Prefix.pch";
@@ -306,6 +311,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XcodeNav/XcodeNav-Prefix.pch";

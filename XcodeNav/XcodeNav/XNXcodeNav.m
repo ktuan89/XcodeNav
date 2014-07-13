@@ -8,6 +8,7 @@
 
 #import "XNXcodeNav.h"
 #import "XNEditorHook.h"
+#import "IDEKit.h"
 
 NSString * const XNDocumentChangedNotification = @"XNDocumentChangedNotification";
 
@@ -51,25 +52,41 @@ static XNXcodeNav *sharedPlugin;
 
 - (id)init
 {
-    if (self = [super init]) {
-        // Sample Menu Item:
-        NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"File"];
-        if (menuItem) {
-            [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
-            NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Do Action" action:@selector(doMenuAction) keyEquivalent:@""];
-            [actionMenuItem setTarget:self];
-            [[menuItem submenu] addItem:actionMenuItem];
-        }
-      _fileList = [[NSMutableArray alloc] init];
+  if (self = [super init]) {
+    NSMenuItem *menuItem = [[NSApp mainMenu] itemWithTitle:@"Editor"];
+    if (menuItem) {
+      [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
+      NSMenuItem *containerMenuItem = [[NSMenuItem alloc] initWithTitle:@"Recent files" action:nil keyEquivalent:@""];
+      [containerMenuItem setSubmenu:[[NSMenu alloc] init]];
+      for (int i = 1; i <= 9; ++i) {
+        NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Show recent %d", i] action:@selector(showRecent:) keyEquivalent:@""];
+        [[containerMenuItem submenu] addItem:actionMenuItem];
+        [actionMenuItem setKeyEquivalent:[NSString stringWithFormat:@"%d", i]];
+        [actionMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+        [actionMenuItem setTarget:self];
+        [actionMenuItem setRepresentedObject:@(i)];
+      }
+      [[menuItem submenu] addItem:containerMenuItem];
     }
-    return self;
+    _fileList = [[NSMutableArray alloc] init];
+  }
+  return self;
 }
 
 // Sample Action, for menu item:
-- (void)doMenuAction
+- (void)showRecent:(id)data
 {
-    NSAlert *alert = [NSAlert alertWithMessageText:@"Hello, World" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
-    [alert runModal];
+  NSInteger index = [(NSNumber *)[data representedObject] intValue];
+  if (index >= [self numberOfRecentDocuments]) {
+    return;
+  }
+  NSString *docPath = [self documentURLAtIndex:index];
+  if(docPath != nil){
+    IDEDocumentController* ctrl = [IDEDocumentController sharedDocumentController];
+    NSError* error;
+    NSURL* doc = [NSURL fileURLWithPath:docPath];
+    [ctrl openDocumentWithContentsOfURL:doc display:YES error:&error];
+  }
 }
 
 - (void)dealloc
@@ -101,6 +118,9 @@ static XNXcodeNav *sharedPlugin;
 
 - (NSString *)documentURLAtIndex:(NSInteger)index
 {
+  if (index < 0 || index > [self numberOfRecentDocuments]) {
+    return @"";
+  }
   return [_fileList objectAtIndex:index];
 }
 
