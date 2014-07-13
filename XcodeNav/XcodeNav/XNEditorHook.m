@@ -4,6 +4,9 @@
 #import "IDEKit.h"
 #import "IDESourceEditor.h"
 #import "XNFileListView.h"
+#import "XNXcodeNav.h"
+
+#define DID_REGISTER_OBSERVER_KEY   "XcodeNav.IDEEditorHook._didRegisterObserver"
 
 @interface IDEEditor(Hook)
 - (void)didSetupEditor__xn;
@@ -40,6 +43,8 @@ static char _associatedViewKey = 0;
       // Insert status line
       [container setPostsFrameChangedNotifications:YES];
       fileListView = [[XNFileListView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
+      // NSView *fileListContainer = [[NSView alloc] init];
+      // fileListContainer addSubview:
       [container addSubview:fileListView];
       objc_setAssociatedObject(container, &_associatedViewKey, fileListView, OBJC_ASSOCIATION_RETAIN);
 
@@ -49,8 +54,8 @@ static char _associatedViewKey = 0;
       [container performSelector:@selector(invalidateLayout)];
 
       // For % register and to notify contents of editor is changed
-      /*[editor addObserver:[XVim instance] forKeyPath:@"document" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-      objc_setAssociatedObject(editor, DID_REGISTER_OBSERVER_KEY, [NSNumber numberWithBool:YES], OBJC_ASSOCIATION_RETAIN);*/
+      [editor addObserver:[XNXcodeNav instance] forKeyPath:@"document" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+      objc_setAssociatedObject(editor, DID_REGISTER_OBSERVER_KEY, [NSNumber numberWithBool:YES], OBJC_ASSOCIATION_RETAIN);
     }
   }
   //---- TO HERE ----
@@ -59,6 +64,10 @@ static char _associatedViewKey = 0;
 - (void)primitiveInvalidate
 {
   IDEEditor *editor = (IDEEditor *)self;
+  NSNumber *didRegisterObserver = objc_getAssociatedObject(editor, DID_REGISTER_OBSERVER_KEY);
+  if ([didRegisterObserver boolValue]) {
+    [editor removeObserver:[XNXcodeNav instance] forKeyPath:@"document"];
+  }
   [editor primitiveInvalidate__xn];
 }
 

@@ -8,6 +8,14 @@
 
 #import <AppKit/AppKit.h>
 
+extern NSString * const XNDocumentChangedNotification;
+
 @interface XNXcodeNav : NSObject
+
++ (instancetype)instance;
+
+- (NSInteger)numberOfRecentDocuments;
+- (NSString *)documentURLAtIndex:(NSInteger)index;
+- (NSString *)documentNameAtIndex:(NSInteger)index;
 
 @end
