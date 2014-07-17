@@ -10,6 +10,30 @@
 #import "DVTKit.h"
 #import "XNXcodeNav.h"
 
+@interface XNTableView : NSTableView
+
+@end
+
+@implementation XNTableView
+
+- (void)resizeWithOldSuperviewSize:(NSSize)oldSize
+{
+  [super resizeWithOldSuperviewSize:oldSize];
+}
+
+- (void)setFrame:(NSRect)frameRect
+{
+  NSLog(@"set frame: %@", @(frameRect.size.height));
+  [super setFrame:frameRect];
+}
+
+- (void)setBounds:(NSRect)aRect
+{
+  [super setBounds:aRect];
+}
+
+@end
+
 @interface XNFileListView () <NSTableViewDataSource, NSTableViewDelegate> {
   DVTChooserView* _background;
   NSTableView *_tableView;
@@ -30,14 +54,17 @@
 
 
     // [self addSubview:_background];
-    _tableView = [[NSTableView alloc] initWithFrame:self.bounds];
+    // self.wantsLayer = YES;
+    // self.layer.backgroundColor = CGColorCreateGenericRGB(40.0/255, 43.0/255, 53.0/255, 1);
+    _tableView = [[XNTableView alloc] initWithFrame:self.bounds];
     NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:@"filename"];
     [_tableView addTableColumn:column];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self addSubview:_tableView];
-    self.wantsLayer = YES;
-    self.layer.backgroundColor = CGColorCreateGenericRGB(40.0 / 255.0, 43.0 / 255.0, 53.0 / 255.0, 1);
+    [_tableView setBackgroundColor:[NSColor colorWithRed:40.0/255 green:43.0/255 blue:53.0/255 alpha:1]];
+    // [self setAutoresizesSubviews:YES];
+    // [_tableView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_documentChangedNotification:) name:XNDocumentChangedNotification object:nil];
   }
   return self;
@@ -54,16 +81,17 @@
   [self layoutView:container];
 }
 
-- (void)layout
-{
-  [_tableView setFrame:self.bounds];
-}
-
 - (void)layoutView:(NSView *)container
 {
   NSRect parentRect = [container frame];
   CGFloat width = MIN(200, parentRect.size.width / 2);
   [self setFrame:NSMakeRect(parentRect.size.width - width, 0, width, parentRect.size.height)];
+  // NSLog(@"layout view: %@", @(self.bounds.size.height));
+  [_tableView setFrame:self.bounds];
+  dispatch_async(dispatch_get_main_queue(), ^(){
+    [_tableView setFrame:self.bounds];
+  });
+  // [_tableView resizeWithOldSuperviewSize:self.bounds.size];
   // [_background setFrame:NSMakeRect(0, 0, width, parentRect.size.height)];
   if ([NSStringFromClass([container class]) isEqualToString:@"IDEComparisonEditorAutoLayoutView"]) {
     // Nothing ( Maybe AutoLayout view does the job "automatically")
@@ -99,6 +127,11 @@
     result.identifier = @"FileList";
   }
 
+  [result setEditable:NO];
+  [result setSelectable:NO];
+  [result setBordered:NO];
+  [result setDrawsBackground:NO];
+  [result setBezeled:NO];
   result.stringValue = [[XNXcodeNav instance] documentNameAtIndex:row];
   return result;
 }
