@@ -1,6 +1,6 @@
 
 #import "XNEditorHook.h"
-#import "Hooker.h"
+#import "XNHooker.h"
 #import "IDEKit.h"
 #import "IDESourceEditor.h"
 #import "XNFileListView.h"
@@ -19,8 +19,8 @@ static char _associatedViewKey = 0;
 
 + (void)hook
 {
-  [Hooker hookClass:@"IDEEditor" method:@"didSetupEditor" byClass:[self class]];
-  [Hooker hookClass:@"IDEEditor" method:@"primitiveInvalidate" byClass:[self class]];
+  [XNHooker hookClass:@"IDEEditor" method:@"didSetupEditor" byClass:[self class]];
+  [XNHooker hookClass:@"IDEEditor" method:@"primitiveInvalidate" byClass:[self class]];
 }
 
 - (void)didSetupEditor

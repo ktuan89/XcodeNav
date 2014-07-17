@@ -8,7 +8,7 @@
 
 #import <objc/runtime.h>
 
-@interface Hooker : NSObject
+@interface XNHooker : NSObject
 
 /**
  * Hook method specified by "cls" and "mtd" by "cls2"-"mtd2.

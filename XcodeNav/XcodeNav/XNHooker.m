@@ -6,9 +6,9 @@
 //  Copyright 2012 JugglerShu.Net. All rights reserved.
 //
 
-#import "Hooker.h"
+#import "XNHooker.h"
 
-@implementation Hooker
+@implementation XNHooker
 
 - (id)init{
     self = [super init];
@@ -42,22 +42,22 @@
     Class c2 = NSClassFromString(cls2);
     Method m2 = class_getInstanceMethod(c2, NSSelectorFromString(mtd2));
     
-    SEL preservedSelector = [Hooker createPreserveSelectorName:mtd];
+    SEL preservedSelector = [XNHooker createPreserveSelectorName:mtd];
     
-    [Hooker hookMethod:NSSelectorFromString(mtd) ofClass:c1 withMethod:m2 keepingOriginalWith:preservedSelector];
+    [XNHooker hookMethod:NSSelectorFromString(mtd) ofClass:c1 withMethod:m2 keepingOriginalWith:preservedSelector];
 }
 
 + (void)hookClass:(NSString *)cls method:(NSString *)mtd byClass:(Class)cls2
 {
-  [Hooker hookClass:cls method:mtd byClass:NSStringFromClass(cls2) method:mtd];
+  [XNHooker hookClass:cls method:mtd byClass:NSStringFromClass(cls2) method:mtd];
 }
 
 + (void) unhookClass:(NSString*)cls method:(NSString*)mtd{
     Class c1 = NSClassFromString(cls);
-    SEL preservedSelector = [Hooker createPreserveSelectorName:mtd];
+    SEL preservedSelector = [XNHooker createPreserveSelectorName:mtd];
     Method m2 = class_getInstanceMethod(c1, preservedSelector);
     
-    [Hooker hookMethod:NSSelectorFromString(mtd) ofClass:c1 withMethod:m2 keepingOriginalWith:nil];
+    [XNHooker hookMethod:NSSelectorFromString(mtd) ofClass:c1 withMethod:m2 keepingOriginalWith:nil];
 }
 
 /**
