@@ -37,6 +37,7 @@
 @interface XNFileListView () <NSTableViewDataSource, NSTableViewDelegate> {
   DVTChooserView* _background;
   NSTableView *_tableView;
+  DVTFontAndColorTheme *_theme;
 }
 
 @end
@@ -56,13 +57,14 @@
     // [self addSubview:_background];
     // self.wantsLayer = YES;
     // self.layer.backgroundColor = CGColorCreateGenericRGB(40.0/255, 43.0/255, 53.0/255, 1);
+    _theme = [NSClassFromString(@"DVTFontAndColorTheme") performSelector:@selector(currentTheme)];
     _tableView = [[XNTableView alloc] initWithFrame:self.bounds];
     NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:@"filename"];
     [_tableView addTableColumn:column];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     [self addSubview:_tableView];
-    [_tableView setBackgroundColor:[NSColor colorWithRed:40.0/255 green:43.0/255 blue:53.0/255 alpha:1]];
+    [_tableView setBackgroundColor:[_theme sourceTextBackgroundColor]];
     // [self setAutoresizesSubviews:YES];
     // [_tableView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_documentChangedNotification:) name:XNDocumentChangedNotification object:nil];
@@ -126,6 +128,9 @@
     result = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, self.bounds.size.width, 20)];
     result.identifier = @"FileList";
   }
+
+  result.textColor = [_theme sourcePlainTextColor];
+  result.font = [_theme sourcePlainTextFont];
 
   [result setEditable:NO];
   [result setSelectable:NO];
