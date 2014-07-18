@@ -10,6 +10,8 @@
 
 @interface XNFileListView : NSView
 
+@property (atomic, assign) CGFloat width;
+
 - (void)layoutView:(NSView*)container;
 - (void)didContainerFrameChanged:(NSNotification *)notification;
 

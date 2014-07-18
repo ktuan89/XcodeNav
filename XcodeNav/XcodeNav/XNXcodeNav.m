@@ -10,6 +10,7 @@
 #import "XNEditorHook.h"
 #import "XNApplicationHook.h"
 #import "IDEKit.h"
+#import "XNFileListView.h"
 
 NSString * const XNDocumentChangedNotification = @"XNDocumentChangedNotification";
 
@@ -18,6 +19,8 @@ static NSString * const kXNRecentFiles = @"recent_files";
 
 @interface XNXcodeNav() {
   NSMutableArray *_fileList;
+  NSMutableArray *_sideBars;
+  CGFloat _sideBarWidth;
 }
 @property (atomic, strong) NSBundle *plugin;
 @end
@@ -64,6 +67,12 @@ static NSString * const kXNRecentFiles = @"recent_files";
       [[menuItem submenu] addItem:[NSMenuItem separatorItem]];
       NSMenuItem *containerMenuItem = [[NSMenuItem alloc] initWithTitle:@"Recent files" action:nil keyEquivalent:@""];
       [containerMenuItem setSubmenu:[[NSMenu alloc] init]];
+
+      NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:@"Toggle side bar" action:@selector(toggleSideBar) keyEquivalent:@"0"];
+      [[containerMenuItem submenu] addItem:actionMenuItem];
+      [actionMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [actionMenuItem setTarget:self];
+
       for (int i = 1; i <= 9; ++i) {
         NSMenuItem *actionMenuItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Show recent %d", i] action:@selector(showRecent:) keyEquivalent:@""];
         [[containerMenuItem submenu] addItem:actionMenuItem];
@@ -75,8 +84,19 @@ static NSString * const kXNRecentFiles = @"recent_files";
       [[menuItem submenu] addItem:containerMenuItem];
     }
     _fileList = [[NSMutableArray alloc] init];
+    _sideBars = [[NSMutableArray alloc] init];
+    _sideBarWidth = 200;
   }
   return self;
+}
+
+- (void)toggleSideBar
+{
+  if (_sideBarWidth > 100) _sideBarWidth = 0;
+  else _sideBarWidth = 200;
+  [_sideBars enumerateObjectsUsingBlock:^(NSValue *obj, NSUInteger idx, BOOL *stop) {
+    [(XNFileListView *)[obj nonretainedObjectValue] setWidth:_sideBarWidth];
+  }];
 }
 
 // Sample Action, for menu item:
@@ -139,6 +159,16 @@ static NSString * const kXNRecentFiles = @"recent_files";
     return docname;
   }
   return @"";
+}
+
+- (void)addSideBar:(XNFileListView *)sidebar
+{
+  [_sideBars addObject:[NSValue valueWithNonretainedObject:sidebar]];
+}
+
+- (void)removeSideBar:(XNFileListView *)sidebar
+{
+  [_sideBars removeObject:[NSValue valueWithNonretainedObject:sidebar]];
 }
 
 - (NSString *)applicationSupportFolder

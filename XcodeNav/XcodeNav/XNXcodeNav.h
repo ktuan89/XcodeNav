@@ -12,6 +12,8 @@
 
 extern NSString * const XNDocumentChangedNotification;
 
+@class XNFileListView;
+
 @interface XNXcodeNav : NSObject
 
 + (instancetype)instance;
@@ -20,5 +22,7 @@ extern NSString * const XNDocumentChangedNotification;
 - (NSString *)documentURLAtIndex:(NSInteger)index;
 - (NSString *)documentNameAtIndex:(NSInteger)index;
 - (void)saveCurrentDocuments;
+- (void)addSideBar:(XNFileListView *)sidebar;
+- (void)removeSideBar:(XNFileListView *)sidebar;
 
 @end

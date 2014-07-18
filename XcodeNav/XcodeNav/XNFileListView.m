@@ -48,6 +48,7 @@
 {
   self = [super initWithFrame:frame];
   if (self) {
+    [[XNXcodeNav instance] addSideBar:self];
     /*Class class = NSClassFromString(@"DVTChooserView");
     _background = [[class alloc] init];
     _background.gradientStyle = 2;  // Style number 2 looks like IDEGlassBarView
@@ -75,6 +76,7 @@
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [[XNXcodeNav instance] removeSideBar:self];
 }
 
 - (void)didContainerFrameChanged:(NSNotification *)notification
@@ -86,7 +88,7 @@
 - (void)layoutView:(NSView *)container
 {
   NSRect parentRect = [container frame];
-  CGFloat width = MIN(200, parentRect.size.width / 2);
+  CGFloat width = MIN(_width, parentRect.size.width / 2);
   [self setFrame:NSMakeRect(parentRect.size.width - width, 0, width, parentRect.size.height)];
   // NSLog(@"layout view: %@", @(self.bounds.size.height));
   [_tableView setFrame:self.bounds];

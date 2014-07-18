@@ -43,6 +43,7 @@ static char _associatedViewKey = 0;
       // Insert status line
       [container setPostsFrameChangedNotifications:YES];
       fileListView = [[XNFileListView alloc] initWithFrame:NSMakeRect(0, 0, 100, 100)];
+      [fileListView setWidth:200];
       // NSView *fileListContainer = [[NSView alloc] init];
       // fileListContainer addSubview:
       [container addSubview:fileListView];
