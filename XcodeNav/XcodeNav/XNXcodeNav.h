@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Anh Khuc. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
 extern NSString * const XNDocumentChangedNotification;
@@ -17,5 +19,6 @@ extern NSString * const XNDocumentChangedNotification;
 - (NSInteger)numberOfRecentDocuments;
 - (NSString *)documentURLAtIndex:(NSInteger)index;
 - (NSString *)documentNameAtIndex:(NSInteger)index;
+- (void)saveCurrentDocuments;
 
 @end

@@ -13,6 +13,7 @@
 		B82F3FB8196FC3A300A3E054 /* XNXcodeNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B82F3FB7196FC3A300A3E054 /* XNXcodeNav.m */; };
 		B8303CC6196FCD79000B9699 /* XNHooker.m in Sources */ = {isa = PBXBuildFile; fileRef = B8303CC5196FCD79000B9699 /* XNHooker.m */; };
 		B857CB5F197340540083AD64 /* IDEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B857CB5E197340540083AD64 /* IDEKit.framework */; };
+		B8DBA7E01977C7E200425AA9 /* XNApplicationHook.m in Sources */ = {isa = PBXBuildFile; fileRef = B8DBA7DF1977C7E200425AA9 /* XNApplicationHook.m */; };
 		B8E5CE56197083B900F55DDA /* XNEditorHook.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E5CE55197083B900F55DDA /* XNEditorHook.m */; };
 		B8E5CE5C19708BC500F55DDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E5CE5B19708BC500F55DDA /* Cocoa.framework */; };
 		B8E5CE5E19708BCF00F55DDA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E5CE5D19708BCF00F55DDA /* CoreData.framework */; };
@@ -36,6 +37,8 @@
 		B8303CC4196FCD79000B9699 /* XNHooker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNHooker.h; sourceTree = "<group>"; };
 		B8303CC5196FCD79000B9699 /* XNHooker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNHooker.m; sourceTree = "<group>"; };
 		B857CB5E197340540083AD64 /* IDEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IDEKit.framework; path = ../../../../../Applications/Xcode.app/Contents/Frameworks/IDEKit.framework; sourceTree = "<group>"; };
+		B8DBA7DE1977C7E200425AA9 /* XNApplicationHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNApplicationHook.h; sourceTree = "<group>"; };
+		B8DBA7DF1977C7E200425AA9 /* XNApplicationHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNApplicationHook.m; sourceTree = "<group>"; };
 		B8E5CE54197083B900F55DDA /* XNEditorHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XNEditorHook.h; sourceTree = "<group>"; };
 		B8E5CE55197083B900F55DDA /* XNEditorHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XNEditorHook.m; sourceTree = "<group>"; };
 		B8E5CE5B19708BC500F55DDA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -102,6 +105,8 @@
 				B8E5CE55197083B900F55DDA /* XNEditorHook.m */,
 				B8E5CE5F19708C8900F55DDA /* XNFileListView.h */,
 				B8E5CE6019708C8900F55DDA /* XNFileListView.m */,
+				B8DBA7DE1977C7E200425AA9 /* XNApplicationHook.h */,
+				B8DBA7DF1977C7E200425AA9 /* XNApplicationHook.m */,
 			);
 			path = XcodeNav;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			files = (
 				B8E5CE6119708C8900F55DDA /* XNFileListView.m in Sources */,
 				B82F3FB8196FC3A300A3E054 /* XNXcodeNav.m in Sources */,
+				B8DBA7E01977C7E200425AA9 /* XNApplicationHook.m in Sources */,
 				B8E5CE56197083B900F55DDA /* XNEditorHook.m in Sources */,
 				B8303CC6196FCD79000B9699 /* XNHooker.m in Sources */,
 			);
