@@ -132,14 +132,18 @@
   }
 
   result.textColor = [_theme sourcePlainTextColor];
-  result.font = [_theme sourcePlainTextFont];
+  result.font = [NSFont fontWithName:[_theme sourcePlainTextFont].fontName size:[_theme sourcePlainTextFont].pointSize - 2];
 
   [result setEditable:NO];
   [result setSelectable:NO];
   [result setBordered:NO];
   [result setDrawsBackground:NO];
   [result setBezeled:NO];
-  result.stringValue = [[XNXcodeNav instance] documentNameAtIndex:row];
+  NSString *name = [[NSString stringWithFormat:@"%2ld ", (long)row] stringByAppendingString:[[XNXcodeNav instance] documentNameAtIndex:row]];
+  if ([name length] > 25) {
+    name = [[[name substringToIndex:22] stringByAppendingString:@".."] stringByAppendingString:[name substringFromIndex:[name length] - 2]];
+  }
+  result.stringValue = name;
   return result;
 }
 
